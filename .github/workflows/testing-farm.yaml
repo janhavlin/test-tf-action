@@ -1,0 +1,19 @@
+name: Testing repository by Testing Farm when push to main branch
+on:
+  push:
+    branches:
+      - main
+
+# The concurrency key is used to prevent multiple workflows from running at the same time
+concurrency:
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Schedule test on Testing Farm
+        uses: sclorg/testing-farm-as-github-action@v4
+        with:
+          api_key: ${{ secrets.TF_API_KEY }}

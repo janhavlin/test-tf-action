@@ -1,0 +1,11 @@
+summary: Test Suite for Vojtux image
+discover:
+    how: fmf
+prepare:
+    how: shell
+    script:
+        - echo "hello from prepare"
+        - echo "clone vojtux repo and checkout the right branch"
+        - echo "build vojtux image"
+execute:
+    how: tmt
