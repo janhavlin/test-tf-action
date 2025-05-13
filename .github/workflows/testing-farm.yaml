@@ -1,4 +1,4 @@
-name: Testing repository by Testing Farm on pull requests
+name: Testing Farm request
 on:
   pull_request:
     types:
@@ -17,4 +17,4 @@ jobs:
         uses: sclorg/testing-farm-as-github-action@v4
         with:
           api_key: ${{ secrets.TF_API_KEY }}
-          compose: Fedora-42
+          #compose: Fedora-42
