@@ -17,3 +17,4 @@ jobs:
         uses: sclorg/testing-farm-as-github-action@v4
         with:
           api_key: ${{ secrets.TF_API_KEY }}
+          compose: Fedora-42
