@@ -6,7 +6,7 @@ on:
 
 # The concurrency key is used to prevent multiple workflows from running at the same time
 concurrency:
-  group: ${{ github.head_ref }}
+  group: my-concurrency-group
   cancel-in-progress: true
 
 jobs:
