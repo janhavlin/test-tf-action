@@ -1,8 +1,6 @@
-name: Testing repository by Testing Farm when push to main branch
+name: Testing Farm request
 on:
-  push:
-    branches:
-      - main
+  pull_request:
 
 # The concurrency key is used to prevent multiple workflows from running at the same time
 concurrency:
@@ -18,3 +16,4 @@ jobs:
         with:
           api_key: ${{ secrets.TF_API_KEY }}
           compose: Fedora-42
+          tmt_hardware: '{"virtualization": {"is-supported": true}}'
