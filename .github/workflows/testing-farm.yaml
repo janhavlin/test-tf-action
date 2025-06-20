@@ -1,6 +1,12 @@
 name: Testing Farm request
 on:
   pull_request:
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number (for forks only)'
+        required: false
+        type: string
 
 # The concurrency key is used to prevent multiple workflows from running at the same time
 concurrency:
@@ -11,9 +17,21 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
+      - name: Check if PR is from fork
+        id: check_fork
+        run: |
+          echo "is_fork=${{ github.event.pull_request.head.repo.full_name != github.repository }}" >> $GITHUB_OUTPUT
+        if: github.event_name == 'pull_request'
+
+      - name: Exit if from fork
+        run: |
+          echo "This PR is from a fork. Skipping.
+          exit 0
+        if: steps.check_fork.outputs.is_fork == 'true'
+
       - name: Schedule test on Testing Farm
         uses: sclorg/testing-farm-as-github-action@v4
         with:
           api_key: ${{ secrets.TF_API_KEY }}
-          compose: Fedora-42
-          tmt_hardware: '{"virtualization": {"is-supported": true}}'
+          #compose: Fedora-42
+          #tmt_hardware: '{"virtualization": {"is-supported": true}}'
