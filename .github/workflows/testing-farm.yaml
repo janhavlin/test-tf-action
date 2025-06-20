@@ -35,3 +35,4 @@ jobs:
           api_key: ${{ secrets.TF_API_KEY }}
           #compose: Fedora-42
           #tmt_hardware: '{"virtualization": {"is-supported": true}}'
+        if: steps.check_fork.outputs.is_fork == 'false'
