@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "hello from test case"
+echo "hello from forked test case"
