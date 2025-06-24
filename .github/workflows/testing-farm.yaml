@@ -15,7 +15,7 @@ jobs:
         uses: sclorg/testing-farm-as-github-action@v4
         with:
           api_key: ${{ secrets.TF_API_KEY }}
-          ref: ${{github.event.pull_request.head.ref}}
-          repository: ${{github.event.pull_request.head.repo.full_name}}
+          git_url: ${{github.event.pull_request.head.repo.full_name}}
+          git_ref: ${{github.event.pull_request.head.ref}}
           #compose: Fedora-42
           #tmt_hardware: '{"virtualization": {"is-supported": true}}'
